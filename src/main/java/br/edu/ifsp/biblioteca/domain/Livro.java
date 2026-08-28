@@ -8,11 +8,10 @@ public class Livro {
     private int anopublicacao;
 
     //construtor
-    public Livro(Long id, String isbn, String titulo, int anopublicacao) {
-        this.id = id;
+    public Livro(String isbn, String titulo, int anoPublicacao) {
         this.isbn = isbn;
         this.titulo = titulo;
-        this.anopublicacao = anopublicacao;
+        this.anopublicacao = anoPublicacao;
     }
 
     //getters
