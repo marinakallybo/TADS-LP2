@@ -47,6 +47,28 @@ public class LivroRepositoryEmMemoria implements ILivroRepository {
 
         List<Livro> colecaoLivros = new ArrayList<>(this.livros.values());
 
+        // for each
+
+//        for (Livro livro : colecaoLivros ) {
+//
+//            if (livro.getIsbn().equalsIgnoreCase(isbn)) {
+//                return Optional.of(livro);
+//            }
+//        }
+
+//        // while
+//        int indice = 0;
+//
+//        while(indice < colecaoLivros.size()) {
+//            Livro livro = colecaoLivros.get(indice);
+//
+//            if (livro.getIsbn().equalsIgnoreCase(isbn)) {
+//                return Optional.of(livro);
+//            }
+//
+//            indice++;
+//        }
+
 
         for (int i = 0; i < colecaoLivros.size(); i++ ) {
 
@@ -64,6 +86,27 @@ public class LivroRepositoryEmMemoria implements ILivroRepository {
 
     @Override
     public List<Livro> buscarPorTitulo(String titulo) {
-        return List.of();
+
+        List<Livro> livrosEncontrados = new ArrayList<>();
+
+        List<Livro> colecaoLivros = new ArrayList<>(this.livros.values());
+
+        for (int i = 0; i < colecaoLivros.size(); i++ ) {
+
+            Livro livro = colecaoLivros.get(i);
+            String title = livro.getTitulo();
+
+            if (title.contains(titulo)) {
+                livrosEncontrados.add(livro);
+            }
+        }
+
+        return livrosEncontrados;
     }
 }
+
+
+//        String title = "Linguagem de Programação";
+//
+//        title.contains("Programação"); // retorna True se for vdd
+
