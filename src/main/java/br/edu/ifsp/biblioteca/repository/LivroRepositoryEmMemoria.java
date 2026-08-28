@@ -26,7 +26,14 @@ public class LivroRepositoryEmMemoria implements ILivroRepository {
 
     @Override
     public List<Livro> listarTodos() {
-        return List.of();
+
+        List<Livro> todosOsLivros = new ArrayList<>();
+
+        for (Livro livro : this.livros.values()) {
+            todosOsLivros.add(livro);
+        }
+
+        return todosOsLivros;
     }
 
     @Override
@@ -93,10 +100,10 @@ public class LivroRepositoryEmMemoria implements ILivroRepository {
 
         for (int i = 0; i < colecaoLivros.size(); i++ ) {
 
-            Livro livro = colecaoLivros.get(i);
-            String title = livro.getTitulo();
+            Livro livro = colecaoLivros.get(i).;
+            String title = livro.getTitulo().toLowerCase();
 
-            if (title.contains(titulo)) {
+            if (title.contains(titulo.toLowerCase())) {
                 livrosEncontrados.add(livro);
             }
         }
