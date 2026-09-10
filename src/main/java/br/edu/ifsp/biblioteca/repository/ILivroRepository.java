@@ -1,9 +1,9 @@
 package br.edu.ifsp.biblioteca.repository;
 
- import br.edu.ifsp.biblioteca.domain.Livro;
+import br.edu.ifsp.biblioteca.domain.Livro;
 
- import java.util.List;
- import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
 
 public interface ILivroRepository {
 
@@ -16,5 +16,4 @@ public interface ILivroRepository {
     Optional<Livro> buscarPorIsbn(String isbn);
 
     List<Livro> buscarPorTitulo(String titulo);
-
 }

@@ -4,57 +4,51 @@ public class Exemplar {
 
     private Long id;
     private String codigo;
-    private Livro livro;
     private EStatusExemplar status;
+    private Livro livro;
 
-    //construtor
-    public Exemplar(Long id, String codigo, Livro livro, EStatusExemplar status) {
-        this.id = id;
+    public Exemplar(String codigo, Livro livro) {
         this.codigo = codigo;
         this.livro = livro;
-        this.status = status;
+        this.status = EStatusExemplar.DISPONIVEL;
     }
 
-    //getters
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCodigo() {
         return codigo;
     }
 
-    public Livro getLivro() {
-        return livro;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public EStatusExemplar getStatus() {
         return status;
     }
 
-    //setters
-    public void setId(Long id) {
-        this.id = id;
+    public void setStatus(EStatusExemplar status) {
+        this.status = status;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public Livro getLivro() {
+        return livro;
     }
 
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
 
-    public void setStatus(EStatusExemplar status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return "Exemplar{" +
-                "id=" + id +
-                ", codigo='" + codigo + '\'' +
-                ", livro=" + livro +
+                "codigo='" + codigo + '\'' +
                 ", status=" + status +
                 '}';
     }

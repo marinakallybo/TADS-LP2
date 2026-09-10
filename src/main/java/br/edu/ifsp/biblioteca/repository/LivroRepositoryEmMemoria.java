@@ -6,17 +6,15 @@ import java.util.*;
 
 public class LivroRepositoryEmMemoria implements ILivroRepository {
 
-    private final Map<Long, Livro> livros = new HashMap<>();
+    private final Map<Long, Livro> livros = new HashMap<Long, Livro>();
     private Long sequenciaId = 0L;
 
     @Override
     public Livro salvar(Livro livro) {
 
         if (livro.getId() == null) {
-
-            //pre incremento
             this.sequenciaId = this.sequenciaId + 1;
-            livro.setId(++this.sequenciaId);
+            livro.setId(this.sequenciaId);
         }
 
         this.livros.put(livro.getId(), livro);
@@ -27,26 +25,24 @@ public class LivroRepositoryEmMemoria implements ILivroRepository {
     @Override
     public List<Livro> listarTodos() {
 
-        List<Livro> todosOsLivros = new ArrayList<>();
+        return new ArrayList<>(this.livros.values());
 
-        for (Livro livro : this.livros.values()) {
-            todosOsLivros.add(livro);
-        }
+//        List<Livro> colecaoLivros = new ArrayList<>(this.livros.values());
+//        return colecaoLivros;
 
-        return todosOsLivros;
+
+//        List<Livro> todosOsLivros = new ArrayList<>();
+//
+//        for (Livro livro : this.livros.values()) {
+//            todosOsLivros.add(livro);
+//        }
+//
+//        return todosOsLivros;
     }
 
     @Override
     public Optional<Livro> buscarPorId(Long id) {
         return Optional.ofNullable(this.livros.get(id));
-/*
-        Livro l = this.livros.get(id);
-
-            if(l == null){
-            return Optional.empty();
-
-           }
-           return Optional.of(l);*/
     }
 
     @Override
@@ -54,37 +50,13 @@ public class LivroRepositoryEmMemoria implements ILivroRepository {
 
         List<Livro> colecaoLivros = new ArrayList<>(this.livros.values());
 
-        // for each
-
-//        for (Livro livro : colecaoLivros ) {
-//
-//            if (livro.getIsbn().equalsIgnoreCase(isbn)) {
-//                return Optional.of(livro);
-//            }
-//        }
-
-//        // while
-//        int indice = 0;
-//
-//        while(indice < colecaoLivros.size()) {
-//            Livro livro = colecaoLivros.get(indice);
-//
-//            if (livro.getIsbn().equalsIgnoreCase(isbn)) {
-//                return Optional.of(livro);
-//            }
-//
-//            indice++;
-//        }
-
-
-        for (int i = 0; i < colecaoLivros.size(); i++ ) {
+        for (int i = 0; i < colecaoLivros.size(); i++) {
 
             Livro livro = colecaoLivros.get(i);
             String livroIsbn = livro.getIsbn();
 
             if (livroIsbn.equalsIgnoreCase(isbn)) {
                 return Optional.of(livro);
-
             }
         }
 
@@ -94,26 +66,17 @@ public class LivroRepositoryEmMemoria implements ILivroRepository {
     @Override
     public List<Livro> buscarPorTitulo(String titulo) {
 
-        List<Livro> livrosEncontrados = new ArrayList<>();
+        List<Livro> encontrados = new ArrayList<>();
 
-        List<Livro> colecaoLivros = new ArrayList<>(this.livros.values());
+        for (Livro livro : this.livros.values()) {
 
-        for (int i = 0; i < colecaoLivros.size(); i++ ) {
+            String livroTitulo = livro.getTitulo().toLowerCase();
 
-            Livro livro = colecaoLivros.get(i).;
-            String title = livro.getTitulo().toLowerCase();
-
-            if (title.contains(titulo.toLowerCase())) {
-                livrosEncontrados.add(livro);
+            if (livroTitulo.contains(titulo.toLowerCase())) {
+                encontrados.add(livro);
             }
         }
 
-        return livrosEncontrados;
+        return encontrados;
     }
 }
-
-
-//        String title = "Linguagem de Programação";
-//
-//        title.contains("Programação"); // retorna True se for vdd
-
