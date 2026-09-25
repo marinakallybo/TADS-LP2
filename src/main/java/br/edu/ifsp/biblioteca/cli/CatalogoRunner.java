@@ -19,8 +19,8 @@ public class CatalogoRunner implements CommandLineRunner {
     private final UsuarioService usuarioService;
 
     public CatalogoRunner(
-            LivroService livroService,
-            UsuarioService usuarioService
+        LivroService livroService,
+        UsuarioService usuarioService
     ) {
         this.livroService = livroService;
         this.usuarioService = usuarioService;
@@ -32,9 +32,9 @@ public class CatalogoRunner implements CommandLineRunner {
         System.out.println("=== Biblioteca IFSP - v0 (tudo em memória) ===");
 
         Livro domCasmurro = new Livro(
-                "9788508145607",
-                "Dom Casmurro",
-                1899
+            "9788508145607",
+            "Dom Casmurro",
+            1899
         );
 
         this.livroService.cadastrar(domCasmurro);
@@ -44,9 +44,9 @@ public class CatalogoRunner implements CommandLineRunner {
         this.livroService.adicionarExemplar(domCasmurro.getId(), "DC-002");
 
         Livro vidasSecas = new Livro(
-                "9788508145603",
-                "Vidas Secas",
-                1938
+            "9788508145603",
+            "Vidas Secas",
+            1938
         );
 
         this.livroService.cadastrar(vidasSecas);
@@ -67,7 +67,7 @@ public class CatalogoRunner implements CommandLineRunner {
         System.out.println();
         System.out.println("-- Usuários --");
 
-        for (Usuario usuario: this.usuarioService.listarTodos()) {
+        for (Usuario usuario : this.usuarioService.listarTodos()) {
             System.out.println(" " + usuario);
         }
 
@@ -76,7 +76,7 @@ public class CatalogoRunner implements CommandLineRunner {
 
         List<Livro> encontrados = this.livroService.buscarPorTitulo("casmurro");
 
-        for (Livro livro: encontrados) {
+        for (Livro livro : encontrados) {
             System.out.println(" " + livro);
         }
 
@@ -86,16 +86,15 @@ public class CatalogoRunner implements CommandLineRunner {
         try {
 
             this.livroService.cadastrar(
-                    new Livro(
-                            "9788508145603",
-                            "Vidas Secas",
-                            1938
-                    )
+                new Livro(
+                    "9788508145603",
+                    "Vidas Secas",
+                    1938
+                )
             );
 
         } catch (RegraDeNegocioException erro) {
             System.out.println(" Regra de negócio impediu: " + erro.getMessage());
         }
-
     }
 }

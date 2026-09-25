@@ -13,6 +13,7 @@ import java.util.Optional;
 @Repository
 @Profile("jdbc")
 public class LivroRepositoryJdbc implements ILivroRepository {
+
     private final DataSource dataSource;
 
     public LivroRepositoryJdbc(DataSource dataSource) {
@@ -26,25 +27,41 @@ public class LivroRepositoryJdbc implements ILivroRepository {
         {
             conexao.setAutoCommit(false);
 
-            if (livro.getId() == null) { //precisa cadastrar
-
+            if (livro.getId() == null) {
                 this.inserirLivro(conexao, livro);
-
             } else {
-
+                this.atualizarLivro(conexao, livro);
             }
 
+            this.salvarAutores(conexao, livro);
+            this.salvarExemplares(conexao, livro);
 
         } catch (SQLException erro) {
 
         }
 
-
         return livro;
     }
 
-    private void inserirLivro (Connection, Livro);
+    private void inserirLivro(Connection conexao, Livro livro) {
 
+        String sql = "INSERT INTO livro(isbn, titulo, ano_publicacao) VALUES (?, ?, ?)";
+
+        
+
+    }
+
+    private void atualizarLivro(Connection conexao, Livro livro) {
+
+    }
+
+    private void salvarAutores(Connection conexao, Livro livro) {
+
+    }
+
+    private void salvarExemplares(Connection conexao, Livro livro) {
+
+    }
 
     @Override
     public List<Livro> listarTodos() {
