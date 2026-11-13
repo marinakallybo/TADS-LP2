@@ -1,9 +1,19 @@
 package br.edu.ifsp.biblioteca.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "autor")
 public class Autor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "nome", nullable = false, length = 150)
     private String nome;
+
+    protected Autor() {}
 
     public Autor(String nome) {
         this.nome = nome;

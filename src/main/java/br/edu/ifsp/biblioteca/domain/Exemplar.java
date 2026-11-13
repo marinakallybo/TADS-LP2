@@ -1,11 +1,22 @@
 package br.edu.ifsp.biblioteca.domain;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "exemplar")
 public class Exemplar {
 
-    private Long id;
     private String codigo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
     private EStatusExemplar status;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "livro_id", nullable = false)
     private Livro livro;
+
+    protected Exemplar() {}
 
     public Exemplar(String codigo, Livro livro) {
         this.codigo = codigo;
